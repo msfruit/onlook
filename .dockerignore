@@ -115,6 +115,19 @@ README.md
 # Testing
 coverage/
 .jest-cache/
+**/*.test.*
+**/*.spec.*
+**/test/**
+**/tests/**
+
+# Development specific
+docs/node_modules
+docs/.next
+docs/out
+
+# Cache directories
+.turbo
+.bun-cache
 
 # Misc
 .turbo

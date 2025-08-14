@@ -5,6 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # 构建时内存优化
+        BUILDKIT_INLINE_CACHE: 1
+    
     ports:
       - "${PORT:-3000}:3000"
     

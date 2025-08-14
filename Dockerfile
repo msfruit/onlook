@@ -14,7 +14,7 @@ FROM base AS deps
 COPY . .
 
 # 安装依赖
-RUN bun install
+RUN bun install 
 
 # 构建阶段
 FROM deps AS builder
