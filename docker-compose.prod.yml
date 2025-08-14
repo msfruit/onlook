@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  onlook-client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    
+    # 从本地环境文件读取配置
+    env_file:
+      - .env.production  # 主要生产环境配置
+    
+    # 基础环境变量配置
+    environment:
+      - NODE_ENV=production
+      - PORT=${PORT:-3000}
+      - HOSTNAME=0.0.0.0
+    
+    restart: unless-stopped
+    
+    # 健康检查
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+        
+    # 日志配置
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  default:
+    name: onlook-network

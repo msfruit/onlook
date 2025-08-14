@@ -14,6 +14,8 @@ const nextConfig: NextConfig = {
     eslint: {
         ignoreDuringBuilds: true,
     },
+    // 启用 standalone 输出模式用于 Docker 部署
+    output: process.env.NODE_ENV === 'production' ? 'standalone' : undefined,
 };
 
 if (process.env.NODE_ENV === 'development') {
