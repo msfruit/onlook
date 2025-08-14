@@ -14,7 +14,7 @@ FROM base AS deps
 COPY . .
 
 # 安装依赖
-RUN bun add esbuild@0.18.20
+RUN bun add esbuild@0.25.5
 RUN bun install --frozen-lockfile
 
 # 构建阶段
